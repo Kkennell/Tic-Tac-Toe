@@ -9,9 +9,17 @@ public class EnvironmentVariables {
 	private boolean gameOver;
 	private boolean playerMove;
 	
+	EnvironmentVariables(){
+		
+		this.difficulty = "unknown";
+		this.playerToken = 'P';
+		this.computerToken = 'C';
+		this.gameOver = false;
+		this.playerMove = false;
+		
+	}
 	public void setDifficulty() {
 		Scanner input = new Scanner(System.in);
-		this.difficulty = "Choose";
 		
 		System.out.println("First things first, you're going to have to choose a difficulty!");
 		
@@ -48,15 +56,15 @@ public class EnvironmentVariables {
 		int randomInt;
 		Random randomNumberGenerator = new Random();
 		
-		System.out.println("In the essence of fairness*, we are going to randomly determine who goes first, you or the computer.");
-		System.out.println("\n The system will generate a random number, if the number is even you get to go first. \n If its odd, well, the odds aren't in your favor and the computer gets to go first.");
+		System.out.println("In the essence of fairness, we are going to randomly determine who goes first, you or the computer.");
+		System.out.println("\nThe system will generate a random number, if the number is even you get to go first. \nIf its odd, well, the odds aren't in your favor and the computer gets to go first.");
 		
 		randomInt = randomNumberGenerator.nextInt();
 		
 		if(randomInt %2 == 0) {
 			this.setPlayerMove(true);
 			
-			System.out.println("The system generated the number "+randomInt+" since this is even, you get to go first!");
+			System.out.println("\nThe system generated the number "+randomInt+" since this is even, you get to go first!");
 			
 		}else {
 			this.setPlayerMove(false);
