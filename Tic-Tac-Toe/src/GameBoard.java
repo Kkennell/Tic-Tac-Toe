@@ -87,4 +87,22 @@ public class GameBoard {
 		return checkRows(playerToken) || checkColumns(playerToken) || checkDiagonals(playerToken);
 	}
 
+	public char getCell(int row, int column) {
+		return this.gameBoard[row][column];
+	}
+
+	public boolean checkRowWin(int row, int column) {
+		
+		return false;
+	}
+
+	public boolean checkColumnWin(int row, int column) {
+		
+		return false;
+	}
+	
+public boolean checkDiagonalWin(int row, int column) {
+		
+		return false;
+	}
 }
