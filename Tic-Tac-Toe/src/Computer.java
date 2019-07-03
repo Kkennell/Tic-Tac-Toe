@@ -6,8 +6,8 @@ public class Computer extends EnvironmentVariables {
 		this.token = (token);
 	}
 
-	public void makeComputerMove(GameBoard gameBoard) {
-		
+	public int[] getMove(GameBoard gameBoard) {
+		return null;
 	}
 	
 }

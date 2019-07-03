@@ -3,13 +3,10 @@ public class GameBoard {
 	
 	private char[][] gameBoard;
 	
-	public void setupGameBoard() {
+	GameBoard() {
 		gameBoard = new char[3][3];
-		initializeGameBoard();
-	}
-	
-	private void initializeGameBoard() {
-		for(int i =0; i<3; i++) {
+		
+		for(int i=0; i<3; i++) {
 			for(int j=0; j<3; j++) {
 				this.gameBoard[i][j] = ' ';
 			}
@@ -17,10 +14,13 @@ public class GameBoard {
 	}
 	
 	public void displayCurrentGameBoard() {
-		
-		System.out.println("The current game board is:");
+			
+		System.out.println("  0    1    2 ");
 		
 		for(int i=0;i<3;i++) {
+			
+			System.out.print(i+" ");
+			
 			for(int j=0; j<3; j++) {
 				
 				System.out.print(" "+gameBoard[i][j]);
@@ -33,48 +33,58 @@ public class GameBoard {
 		
 			if(i==0 || i==1) {		
 				
-				System.out.println("------------");
+				System.out.println("  ------------");
 
 			}		
 		}
 	}
+	
+	public boolean isValidMove(int row, int column) {
+		return this.gameBoard[row][column] == ' ';
+	}
+	
+	public void setMove(int row, int column, char player) {
+		
+		this.gameBoard[row][column] = player;
+		
+	}	
+	private boolean checkRows(char player) {
+		for(int i=0; i<3; i++)
+		{
+			if(this.gameBoard[i][0] == player && this.gameBoard[i][1] == player && this.gameBoard[i][2] == player) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean checkColumns(char player) {
+		for(int i=0; i<3; i++)
+		{
+			if(this.gameBoard[0][i] == player && this.gameBoard[1][i] == player && this.gameBoard[2][i] == player) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkDiagonals(char player) {
+		if(this.gameBoard[0][0] == player && this.gameBoard[1][1] == player && this.gameBoard[2][2] == player) {
+			
+			return true;
+		}
+		else if(this.gameBoard[2][0] == player && this.gameBoard[1][1] == player && this.gameBoard[0][2] == player) {
+			
+			return true;
+		}
+		
+		return false;
+	}
 
-	public boolean checkWinConditions() {		
-		return checkRows() || checkColumns() || checkDiagonals();
-	}
-	
-	private boolean checkRows() {
-		for(int i=0; i<3; i++)
-		{
-			if(this.gameBoard[i][0] == this.gameBoard[i][1] && this.gameBoard[i][1] == this.gameBoard[i][2] && this.gameBoard[i][0] == this.gameBoard[i][2]) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	private boolean checkColumns() {
-		for(int i=0; i<3; i++)
-		{
-			if(this.gameBoard[0][i] == this.gameBoard[1][i] && this.gameBoard[1][i] == this.gameBoard[2][i] && this.gameBoard[0][i] == this.gameBoard[2][i]) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private boolean checkDiagonals() {
-		if(this.gameBoard[0][0] == this.gameBoard[1][1] && this.gameBoard[1][1] == this.gameBoard[2][2] && this.gameBoard[0][0] == this.gameBoard[2][2]) {
-			
-			return true;
-		}
-		else if(this.gameBoard[2][0] == this.gameBoard[1][1] && this.gameBoard[1][1] == this.gameBoard[0][2] && this.gameBoard[2][0] == this.gameBoard[0][0]) {
-			
-			return true;
-		}
-		
-		return false;
+	public boolean checkWinConditions(char playerToken) {
+		// TODO Auto-generated method stub
+		return checkRows(playerToken) || checkColumns(playerToken) || checkDiagonals(playerToken);
 	}
 
 }

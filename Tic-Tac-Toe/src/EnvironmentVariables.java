@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class EnvironmentVariables {
 	
-	private String difficulty;
+	
 	private char playerToken;
 	private char computerToken;
 	private boolean gameOver;
@@ -11,23 +11,34 @@ public class EnvironmentVariables {
 	
 	EnvironmentVariables(){
 		
-		this.difficulty = "unknown";
 		this.playerToken = 'P';
-		this.computerToken = 'C';
+		this.computerToken= 'C';
 		this.gameOver = false;
 		this.playerMove = false;
 		
 	}
-	public void setDifficulty() {
+	public Computer setDifficulty() {
 		Scanner input = new Scanner(System.in);
+		String difficulty = "unknown";
 		
 		System.out.println("First things first, you're going to have to choose a difficulty!");
 		
 		while(!difficulty.equalsIgnoreCase("easy") && !difficulty.equalsIgnoreCase("medium") && !difficulty.equalsIgnoreCase("hard")) {
 			System.out.println("Would you like to play on easy, medium, or hard?");
 			
-			this.difficulty = input.nextLine();
+			difficulty = input.nextLine().toLowerCase();
 		}
+		
+		switch(difficulty) {
+			case "easy":
+				return new EasyComputerPlayer();
+		case "medium":
+				return new MediumComputerPlayer();
+			case "hard":
+				return new HardComputerPlayer();
+		}
+		
+		return null;
 	}
 	
 	public void setTokens() {
@@ -87,5 +98,13 @@ public class EnvironmentVariables {
 
 	public void setPlayerMove(boolean playerMove) {
 		this.playerMove = playerMove;
+	}
+	
+	public char getComputerToken() {
+		return computerToken;
+	}
+	
+	public char getPlayerToken() {
+		return this.playerToken;
 	}
 }
